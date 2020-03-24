@@ -70,6 +70,11 @@ public class TwoPointsTest {
         Point p2 = testPoints.getPoint(1);
         assertEquals(p1.x, p2.x);
         assertEquals(p1.y, p2.y);
+        testPoints.setPoint(1,4,5);
+        assertEquals(4,p2.x);
+        assertEquals(5,p2.y);
+        assertEquals(0,p1.x);
+        assertEquals(0,p1.y);
     }
 
     @Test
@@ -79,7 +84,7 @@ public class TwoPointsTest {
         Point p2 = testPoints.getPoint(1);
         int xDiff = p1.x - p2.x;
         int yDiff = p1.y - p2.y;
-        double result = Math.sqrt(Math.pow(xDiff*xDiff,2) + Math.pow(yDiff*yDiff,2));
+        int result = (int)Math.sqrt(xDiff*xDiff + yDiff*yDiff);
         assertTrue("distance is correct",abs(result-testPoints.distance()) == 0);
     }
 
@@ -88,6 +93,7 @@ public class TwoPointsTest {
         TwoPoints testPoints = new TwoPoints();
         Point p1 = testPoints.getPoint(0);
         Point p2 = testPoints.getPoint(1);
+        testPoints.setPoint(0,3,5);
         int xDiff = p1.x - p2.x;
         int yDiff = p1.y - p2.y;
         if(p1 == p2){
@@ -95,7 +101,7 @@ public class TwoPointsTest {
         }
         else if(xDiff != 0 && yDiff !=0){
             double result = yDiff / xDiff;
-            assertEquals(result,testPoints.slope(),1);
+            assertEquals(result,testPoints.slope(),.01);
         }
     }
 }
