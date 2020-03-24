@@ -82,10 +82,11 @@ public class TwoPointsTest {
         TwoPoints testPoints = new TwoPoints();
         Point p1 = testPoints.getPoint(0);
         Point p2 = testPoints.getPoint(1);
+        testPoints.setPoint(1,3,2);
         int xDiff = p1.x - p2.x;
         int yDiff = p1.y - p2.y;
-        int result = (int)Math.sqrt(xDiff*xDiff + yDiff*yDiff);
-        assertTrue("distance is correct",abs(result-testPoints.distance()) == 0);
+        double result = (int)(Math.sqrt(xDiff*xDiff + yDiff*yDiff)+ 0.5);
+        assertEquals(result, testPoints.distance(),0.1);
     }
 
     @Test

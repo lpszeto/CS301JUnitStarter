@@ -52,7 +52,7 @@ public class TwoPoints {
         int result = 0;
         int xDiff = points[0].x - points[1].x;
         int yDiff = points[0].y - points[1].y;
-        result = (int)Math.sqrt(xDiff*xDiff + yDiff*yDiff);
+        result = (int)(Math.sqrt(xDiff*xDiff + yDiff*yDiff)+0.5);
         return result;
     }
 
