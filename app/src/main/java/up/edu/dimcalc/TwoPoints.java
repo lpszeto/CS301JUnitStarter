@@ -10,7 +10,7 @@ import java.util.Random;
 public class TwoPoints {
 
     private Point[] points = new Point[2];
-    private Random rand = new Random();
+    public Random rand = new Random();
 
     /** ctor */
     public TwoPoints() {

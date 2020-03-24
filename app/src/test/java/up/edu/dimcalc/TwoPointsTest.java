@@ -4,6 +4,7 @@ import android.graphics.Point;
 
 import org.junit.Test;
 
+import static java.lang.Math.abs;
 import static org.junit.Assert.*;
 
 public class TwoPointsTest {
@@ -13,7 +14,7 @@ public class TwoPointsTest {
         TwoPoints testPoints = new TwoPoints();
         Point p1 = testPoints.getPoint(0);
         Point p2 = testPoints.getPoint(1);
-        assertEquals(1, p1.x);
+        assertEquals(0, p1.x);
         assertEquals(0, p1.y);
         assertEquals(0, p2.x);
         assertEquals(0, p2.y);
@@ -36,21 +37,65 @@ public class TwoPointsTest {
 
     @Test
     public void randomValue() {
+        TwoPoints testPoints = new TwoPoints();
+        testPoints.randomValue(0);
+        testPoints.randomValue(1);
+        Point p1 = testPoints.getPoint(0);
+        Point p2 = testPoints.getPoint(1);
+        assertEquals(0,p1.x,10);
+        assertEquals(0,p1.y,10);
+        assertEquals(0,p2.x,10);
+        assertEquals( 0,p2.y,10);
     }
 
     @Test
     public void setOrigin() {
+        TwoPoints testPoints = new TwoPoints();
+        testPoints.setOrigin(0);
+        testPoints.setOrigin(1);
+        Point p1 = testPoints.getPoint(0);
+        Point p2 = testPoints.getPoint(1);
+        assertEquals(0, p1.x);
+        assertEquals(0, p1.y);
+        assertEquals(0, p2.x);
+        assertEquals(0, p2.y);
+
     }
 
     @Test
     public void copy() {
+        TwoPoints testPoints = new TwoPoints();
+        testPoints.copy(0,1);
+        Point p1 = testPoints.getPoint(0);
+        Point p2 = testPoints.getPoint(1);
+        assertEquals(p1.x, p2.x);
+        assertEquals(p1.y, p2.y);
     }
 
     @Test
     public void distance() {
+        TwoPoints testPoints = new TwoPoints();
+        Point p1 = testPoints.getPoint(0);
+        Point p2 = testPoints.getPoint(1);
+        int xDiff = p1.x - p2.x;
+        int yDiff = p1.y - p2.y;
+        double result = Math.sqrt(Math.pow(xDiff*xDiff,2) + Math.pow(yDiff*yDiff,2));
+        assertTrue("distance is correct",abs(result-testPoints.distance()) == 0);
     }
 
     @Test
     public void slope() {
+        TwoPoints testPoints = new TwoPoints();
+        Point p1 = testPoints.getPoint(0);
+        Point p2 = testPoints.getPoint(1);
+        int xDiff = p1.x - p2.x;
+        int yDiff = p1.y - p2.y;
+        if(p1 == p2){
+            assertEquals("slope is correct",testPoints.slope() == 0);
+        }
+        else if(xDiff != 0 && yDiff !=0){
+            double result = yDiff / xDiff;
+            assertEquals(result,testPoints.slope(),1);
+        }
     }
 }
